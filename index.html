@@ -10,33 +10,33 @@
                 width: 250px;
                 height: 180px;
                 margin-bottom: 20px;
+                margin-right: 20px;
                 background-color: #dedede;
 
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 user-select: none;
+                flex-direction: column;
+            }
+
+            .card-products {
+                margin-top: 100px;
+                display: flex;
+            }
+
+            .card-thumb {
+                width: 250px;
+                height: auto;
+            }
+
+            .cart {
+                background-color: coral;
             }
         </style>
     </head>
     <body>
-        <div id="app">
-            <div class="card-container">
-                <div class="card" @mouseover="handleMouseOver">Mouse Over</div>
-                <div class="card" @mouseleave="handleMouseLeave">
-                    Mouse Leave
-                </div>
-                <div
-                    class="card"
-                    @dblclick="handleDoubleClick($event, 150, 100)"
-                >
-                    Double Click
-                </div>
-                <div class="card" @mousemove="handleMouseMove">
-                    Mouse Move: {{ `${(x)} - ${(y)}` }}
-                </div>
-            </div>
-        </div>
+        <div id="app"></div>
     </body>
 </html>
 
