@@ -3,11 +3,18 @@
     <Interact
         v-if="statusMatch === 'match'"
         :cardsContent="settings.cardsContent"
+        @onFinish="onGetResult"
     />
-    <Result />
+    <Result
+        v-if="statusMatch === 'result'"
+        :timer="timer"
+        @onStartAgain="this.statusMatch = 'default'"
+    />
+    <CopyRight />
 </template>
 
 <script>
+import CopyRight from "./components/CopyRight.vue";
 import Interact from "./pages/Interact.vue";
 import Main from "./pages/Main.vue";
 import Result from "./pages/Result.vue";
@@ -19,6 +26,7 @@ export default {
         Main,
         Interact,
         Result,
+        CopyRight,
     },
 
     data() {
@@ -29,6 +37,7 @@ export default {
                 cardsContent: [],
                 startedAt: null,
             },
+            timer: 0,
         };
     },
 
@@ -48,6 +57,10 @@ export default {
             // data is ready
             this.statusMatch = "match";
             this.settings.startedAt = new Date().getTime();
+        },
+        onGetResult() {
+            this.timer = new Date().getTime() - this.settings.startedAt;
+            this.statusMatch = "result";
         },
     },
 };
