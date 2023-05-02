@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vue JS 3</title>
+        <style>
+            .card {
+                width: 250px;
+                height: 180px;
+                margin-bottom: 20px;
+                background-color: #dedede;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                user-select: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div class="card-container">
+                <div class="card" @mouseover="handleMouseOver">Mouse Over</div>
+                <div class="card" @mouseleave="handleMouseLeave">
+                    Mouse Leave
+                </div>
+                <div
+                    class="card"
+                    @dblclick="handleDoubleClick($event, 150, 100)"
+                >
+                    Double Click
+                </div>
+                <div class="card" @mousemove="handleMouseMove">
+                    Mouse Move: {{ `${(x)} - ${(y)}` }}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<!-- <script src="./main-session-1.js"></script> -->
+<script src="./main-session-2.js"></script>
