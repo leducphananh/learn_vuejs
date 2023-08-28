@@ -10,14 +10,17 @@
 
 <script>
 import { computed, ref } from 'vue';
+import useDebounce from '@/hooks/useDebounce';
 
 export default {
     setup() {
         const names = ['Bret', 'Antonette', 'Samantha', 'Karianne', 'Kamren'];
         const searchTerm = ref('');
+        const debounceSearchTerm = useDebounce(searchTerm, 500);
+
         const filteredNames = computed(() =>
             names.filter((name) =>
-                name.toLowerCase().includes(searchTerm.value)
+                name.toLowerCase().includes(debounceSearchTerm.value)
             )
         );
 
