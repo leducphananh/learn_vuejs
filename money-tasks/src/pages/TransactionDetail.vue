@@ -9,23 +9,33 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+import { useRoute } from 'vue-router';
+
 export default {
-    data() {
-        return {
-            transaction: null,
-        };
-    },
+    setup() {
+        const route = useRoute();
+        const transactionId = route.params.id;
+        const transaction = ref(null);
 
-    created() {
-        const fetchData = async () => {
-            const response = await fetch(
-                `http://localhost:3000/transactions/${this.$route.params.id}`
-            );
-            const jsonData = await response.json();
-            this.transaction = jsonData;
+        const fetchTransaction = async () => {
+            try {
+                const response = await fetch(
+                    `http://localhost:3000/transactions/${transactionId}`
+                );
+                if (response.ok) {
+                    transaction.value = await response.json();
+                } else {
+                    throw new Error('Something went wrong');
+                }
+            } catch (err) {
+                console.error(err);
+            }
         };
 
-        fetchData();
+        fetchTransaction();
+
+        return { transaction };
     },
 };
 </script>

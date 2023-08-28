@@ -9,3 +9,10 @@
         <router-link to="/">Settings</router-link>
     </nav>
 </template>
+
+<style scoped>
+.nav {
+    display: flex;
+    gap: 8px;
+}
+</style>

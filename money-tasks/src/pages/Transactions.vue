@@ -1,6 +1,6 @@
 <template>
     <div>Transactions page</div>
-    <div v-if="transactions.length">
+    <div v-if="transactions.length > 0">
         <div
             class="item"
             v-for="transaction in transactions"
@@ -20,21 +20,29 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
-    data() {
-        return {
-            transactions: [],
-        };
-    },
+    setup() {
+        const transactions = ref([]);
 
-    created() {
-        const fetchData = async () => {
-            const response = await fetch("http://localhost:3000/transactions");
-            const jsonData = await response.json();
-            this.transactions = jsonData;
+        const fetchTransactions = async () => {
+            try {
+                const response = await fetch(
+                    'http://localhost:3000/transactions'
+                );
+                if (response.ok) {
+                    return (transactions.value = await response.json());
+                }
+                throw new Error('Something went wrong');
+            } catch (err) {
+                console.error(err);
+            }
         };
 
-        fetchData();
+        fetchTransactions();
+
+        return { transactions };
     },
 };
 </script>
