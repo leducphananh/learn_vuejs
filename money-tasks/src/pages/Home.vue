@@ -1,13 +1,3 @@
-<template>
-    <div>This is Home page</div>
-    <input v-model="searchTerm" />
-    <ul>
-        <li v-for="(name, index) in filteredNames" :key="index">
-            {{ name }}
-        </li>
-    </ul>
-</template>
-
 <script>
 import { computed, ref } from 'vue';
 import useDebounce from '@/hooks/useDebounce';
@@ -28,3 +18,13 @@ export default {
     },
 };
 </script>
+
+<template>
+    <div>This is Home page</div>
+    <input v-model="searchTerm" />
+    <ul>
+        <li v-for="(name, index) in filteredNames" :key="index">
+            {{ name }}
+        </li>
+    </ul>
+</template>

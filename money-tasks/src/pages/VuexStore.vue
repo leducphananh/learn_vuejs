@@ -1,9 +1,16 @@
 <script>
-import useTransactions from '@/hooks/useTransactions';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
     setup() {
-        const { transactions } = useTransactions();
+        const store = useStore();
+
+        store.dispatch('transactions/fetchTransactions');
+
+        const transactions = computed(
+            () => store.state.transactions.transactions
+        );
 
         return { transactions };
     },
@@ -11,7 +18,7 @@ export default {
 </script>
 
 <template>
-    <div>Transactions page</div>
+    <h1>Vuex store</h1>
     <div v-if="transactions.length > 0">
         <div
             class="item"

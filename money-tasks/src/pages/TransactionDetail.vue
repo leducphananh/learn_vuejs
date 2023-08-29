@@ -1,13 +1,3 @@
-<template>
-    <div>Transaction detail</div>
-    <div v-if="transaction">
-        <h1>ID: {{ transaction.id }}</h1>
-        <h2>Name: {{ transaction.name }}</h2>
-        <h3>Price: {{ transaction.price }}</h3>
-    </div>
-    <div v-else>Loading transaction {{ $route.params.id }}...</div>
-</template>
-
 <script>
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
@@ -39,3 +29,13 @@ export default {
     },
 };
 </script>
+
+<template>
+    <div>Transaction detail</div>
+    <div v-if="transaction">
+        <h1>ID: {{ transaction.id }}</h1>
+        <h2>Name: {{ transaction.name }}</h2>
+        <h3>Price: {{ transaction.price }}</h3>
+    </div>
+    <div v-else>Loading transaction {{ $route.params.id }}...</div>
+</template>
