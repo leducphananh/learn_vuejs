@@ -63,11 +63,15 @@
 </template>
 
 <script>
+import { auth, db } from '@/configs/firebase';
+
 export default {
     setup() {
         const onSubmit = () => {
             //
         };
+
+        console.log(db, auth);
 
         return {
             onSubmit,
