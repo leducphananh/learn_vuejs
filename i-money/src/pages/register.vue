@@ -11,6 +11,7 @@
                             placeholder="iMoney"
                             type="text"
                             autocomplete="off"
+                            v-model="user.fullName"
                         />
                     </label>
                 </div>
@@ -23,6 +24,7 @@
                             placeholder="example@gmail.com"
                             type="email"
                             autocomplete="off"
+                            v-model="user.email"
                         />
                     </label>
                 </div>
@@ -35,18 +37,32 @@
                             placeholder="Example"
                             type="password"
                             autocomplete="off"
+                            v-model="user.password"
                         />
                     </label>
                 </div>
                 <div class="row">
                     <button
+                        v-if="!signUpPending"
                         class="w-full py-3 text-center bg-primary text-white font-bold rounded-lg"
                         type="submit"
                     >
                         Sign Up
                     </button>
+                    <button
+                        v-else
+                        class="w-full py-3 text-center bg-primary text-white font-bold rounded-lg opacity-60 cursor-not-allowed"
+                        type="button"
+                        disabled
+                    >
+                        Loading...
+                    </button>
                 </div>
             </form>
+
+            <div v-if="signUpError" class="text-left mt-4">
+                <span class="text-red">{{ signUpError }}</span>
+            </div>
 
             <div class="w-full text-center mt-6">
                 <span class="font-semibold">I'm already a member.</span>
@@ -63,18 +79,36 @@
 </template>
 
 <script>
-import { auth, db } from '@/configs/firebase';
+import { useSignUp } from '@/composables/useSignUp';
+import { reactive } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
     setup() {
-        const onSubmit = () => {
-            //
+        const router = useRouter();
+
+        const user = reactive({
+            fullName: '',
+            email: '',
+            password: '',
+        });
+
+        const {
+            error: signUpError,
+            pending: signUpPending,
+            signUp,
+        } = useSignUp();
+
+        const onSubmit = async () => {
+            await signUp(user.email, user.password, user.fullName);
+            if (!signUpError.value) router.push({ name: 'Home' });
         };
 
-        console.log(db, auth);
-
         return {
+            user,
             onSubmit,
+            signUpError,
+            signUpPending,
         };
     },
 };

@@ -1,17 +1,23 @@
 import '@/assets/styles/global.css';
 import '@/assets/styles/tailwind.css';
 import router from '@/router';
-import { registerGlobalComponents } from '@/utils/import';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import {
+    importFontAwesomeIcon,
+    registerGlobalComponents,
+} from '@/utils/import';
 import { createApp } from 'vue';
 import App from './App.vue';
+import { firestoreAuth } from './configs/firebase';
 
-library.add(faUserSecret);
+let app;
 
-const app = createApp(App);
+firestoreAuth.onAuthStateChanged(() => {
+    if (!app) {
+        app = createApp(App);
 
-registerGlobalComponents(app);
+        registerGlobalComponents(app);
+        importFontAwesomeIcon(app);
 
-app.use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app');
+        app.use(router).mount('#app');
+    }
+});
