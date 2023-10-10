@@ -14,6 +14,7 @@ const routes = [
         name: 'Home',
         meta: {
             leading: true,
+            showFooter: true,
         },
         component: () => import(/* webpackChunkName: "home" */ '@/pages/'),
         beforeEnter: requireAuth,
@@ -48,6 +49,7 @@ const routes = [
         meta: {
             pageName: 'Profile',
             leading: false,
+            showFooter: true,
         },
         component: () =>
             import(/* webpackChunkName: "profile" */ '@/pages/profile'),
@@ -59,6 +61,7 @@ const routes = [
         meta: {
             pageName: 'Report',
             leading: false,
+            showFooter: true,
         },
         component: () =>
             import(/* webpackChunkName: "report" */ '@/pages/report'),
@@ -70,6 +73,7 @@ const routes = [
         meta: {
             pageName: 'Budget',
             leading: false,
+            showFooter: true,
         },
         component: () =>
             import(/* webpackChunkName: "budget" */ '@/pages/budget'),
@@ -81,6 +85,7 @@ const routes = [
         meta: {
             pageName: 'New Transaction',
             leading: false,
+            showFooter: true,
         },
         component: () =>
             import(

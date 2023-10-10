@@ -1,17 +1,22 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
+    faBell,
+    faCalendarDays,
+    faCamera,
     faChartPie,
     faChartSimple,
     faChevronRight,
     faCircleInfo,
     faHouse,
+    faLocationDot,
+    faNoteSticky,
     faPlus,
     faRightFromBracket,
     faShieldHalved,
     faToolbox,
     faUser,
+    faUserGroup,
     faWallet,
-    faBell,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { defineAsyncComponent } from 'vue';
@@ -40,7 +45,12 @@ export const importFontAwesomeIcon = (app) => {
         faUser,
         faChartPie,
         faPlus,
-        faBell
+        faBell,
+        faNoteSticky,
+        faCalendarDays,
+        faLocationDot,
+        faUserGroup,
+        faCamera
     );
     app.component('font-awesome-icon', FontAwesomeIcon);
 };

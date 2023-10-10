@@ -46,3 +46,13 @@ export const NAVBAR_BOTTOM = [
         route: { name: 'Profile' },
     },
 ];
+
+export const COLLECTIONS = {
+    transactions: 'transactions',
+};
+
+export const ACCEPTED_UPLOAD_FILE_TYPE = [
+    'image/png',
+    'image/jpg',
+    'image/gif',
+];
